@@ -37,12 +37,44 @@ Predict N-Gram based on N-Gram <br>
                                          
 
 #### Implement N-Gram Model
-    Database    <----    MapReduce Job2    <----    MapReducer Job1
-                       calculate probability        calculate total count for n gram
-                       write to the database 
+    Database    <----                MapReduce Job2    <----          MapReducer Job1
+                                   calculate probability            calculate total count for n gram
+                                   write to the database 
+                        
+    hello | world | 100            Mapper: hello word | 100             Mapper: hello world | 1, 1, 1 .... (100 times)   
                        
-                       |hello world|100|
-                       |-----------|---|
+                                   Reducer: hello | world | 100         Reducer: hello world | 100
+                                   
+                                   
+    Steps:
+        1. Read a large-scale document collections
+                
+        2. Build n-gram library (First MapReduce Job)
+               |
+               |
+               |--------> 2-gram                 3-gram                ....     n-gram
+                          want to   | 200
+                          eat apple | 120
+                          eat knife | 1
+               
+        3. Calculate probability (Second MapReduce Job) and write result into Database
+               |
+               |
+               |-------> want | to = 200  calculate P(to | want) = ???
+                         
+                         eat  | apple = 120   calculate P(apple | eat) = ???
+                                knife = 1
+                        
+        4. Run the project on MapReduce
+   
+##### Document Preprocessing:
+* Read each document
+    * sentence by sentence<br>
+        HDFS reads documents line by line by defaut<br>
+        However we need to obtain the context of documents so<br> 
+        we set HDFS read document sentence by sentence<br>
+* Remove all non-alphabetical symbols
 
-       
-    
+##### Build N-gram Library
+![N-Gram Library](N-Gram%20Library.png)
+
