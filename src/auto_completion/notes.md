@@ -41,7 +41,8 @@ Predict N-Gram based on N-Gram <br>
                        calculate probability        calculate total count for n gram
                        write to the database 
                        
-                       hello world | 100|
-                       ------------|----
+                       |hello world|100|
+                       |-----------|---|
+
        
     
