@@ -1,0 +1,17 @@
+What is N-Gram Model?
+
+1. N-Gram: A n-gram is a contiguous sequence of n items from a given sequence
+           of text or speech
+    example:
+    A B C D
+    4-Gram: A B C D
+    3-Gram: A B C, B C D
+
+What is Language Model?
+    A language model is a probability distribution over entire sentences or texts
+
+I want to eat _____:
+    A. apple          P(apple) > P(knife)
+    B. knife
+
+So N-Gram Model is to use probability to predict next word / phrase
