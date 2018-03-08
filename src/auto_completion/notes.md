@@ -75,6 +75,21 @@ Predict N-Gram based on N-Gram <br>
         we set HDFS read document sentence by sentence<br>
 * Remove all non-alphabetical symbols
 
-##### Build N-gram Library
+##### Build N-Gram Library
 ![N-Gram Library](N-Gram%20Library.png)
 
+* Build N-Gram Library by MapReduce
+    ```
+    Word Count is 1-gram impelemented by MapReduce
+    
+    More generally:
+        N-Gram:
+        
+    Today is so cold since it is snowing outside
+                 | first time split
+                \ /
+    Today is, is so, so cold, cold since, since it, it is, is snowing, snowing outside
+                 |
+                \ /
+    
+    ```
