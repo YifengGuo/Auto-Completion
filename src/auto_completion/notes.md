@@ -89,7 +89,16 @@ Predict N-Gram based on N-Gram <br>
                  | first time split
                 \ /
     Today is, is so, so cold, cold since, since it, it is, is snowing, snowing outside
-                 |
+                 | second time split
                 \ /
+    Today is so, is so cold, so cold since, cold since it, since it is, it is snowing, is snowing outside 
+    
+    
+    Reducer:
+        This is 1      merge
+        This is 1     ------->   This 2
+        is cold 1                ....
     
     ```
+    
+    
