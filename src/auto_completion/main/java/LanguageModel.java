@@ -121,10 +121,14 @@ public class LanguageModel {
          *                 ...                  ...
          *
          *
-         *       output      key               value
-         *                   10                <cool, weather>
-         *                   20                <cool, joke>
-         *                   6                 <cool, dance>
+         *       output      key                                                    value
+         *                   This is cool  | weather | 10
+         *                   This is cool  | joke    | 20
+         *                   This is cool  | dance   | 6
+         *                   ...   only store records with top K counts
+         *                   This is       | cool   | 50
+         *                   ...  only store records with top K counts
+         *
          *
          *  The reducer will write the output into Database
          * @param key
