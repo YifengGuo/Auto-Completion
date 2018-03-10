@@ -69,8 +69,6 @@ public class Driver {
         job2.setJobName("LanguageModel");
         job2.setJarByClass(Driver.class);
 
-        job2.addArchiveToClassPath(new Path(""));
-
         job2.setMapperClass(LanguageModel.LanguageModelMapper.class);
         job2.setReducerClass(LanguageModel.LanguageModelReducer.class);
 
