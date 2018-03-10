@@ -12,14 +12,12 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @author yifengguo
  */
 public class Driver {
-    public static void main(String[] args) throws IOException, InterruptedException, SQLException,
-    ClassNotFoundException{
+    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException{
         // MapReduce 1 parameters
         // inputDir
         // outputDir
@@ -65,19 +63,18 @@ public class Driver {
         conf1.set("threshold", threshold);
         conf2.set("topK", topK);
 
-        Job job2 = Job.getInstance();
-        job2.setJobName("LanguageModel");
-        job2.setJarByClass(Driver.class);
-
-        job2.setMapperClass(LanguageModel.LanguageModelMapper.class);
-        job2.setReducerClass(LanguageModel.LanguageModelReducer.class);
-
         // connect Driver with Database
         DBConfiguration.configureDB(conf2,
                 "com.mysql.jdbc.Driver",
-                "jdbc:mysql://127.0.0.1:8080/auto_completion",
+                "jdbc:mysql://localhost:3306/auto_completion",
                 "root",
                 "root");
+
+        Job job2 = Job.getInstance(conf2);
+        job2.setJobName("LanguageModel");
+        job2.setJarByClass(Driver.class);
+
+        // job2.addArchiveToClassPath(new Path("/home/yifengguo/Downloads/mysql-connector-java-5.1.45.jar"));
 
         // for job.setOutputKeyClass() is to set the key of reducer output by default
         // so when the output forms are different between Mapper and Reducer
@@ -88,6 +85,9 @@ public class Driver {
         job2.setOutputKeyClass(DBOutputWritable.class);
         job2.setOutputValueClass(NullWritable.class);
 
+        job2.setMapperClass(LanguageModel.LanguageModelMapper.class);
+        job2.setReducerClass(LanguageModel.LanguageModelReducer.class);
+
         job2.setInputFormatClass(TextInputFormat.class);
         job2.setOutputFormatClass(DBOutputFormat.class);
 
@@ -95,7 +95,5 @@ public class Driver {
         DBOutputFormat.setOutput(job2, "language_model",
                 new String[] {"starting_phrase", "following_word", "count"});
         job1.waitForCompletion(true);
-
-
     }
 }
