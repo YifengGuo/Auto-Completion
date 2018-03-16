@@ -52,7 +52,7 @@
         4. Run the project on MapReduce
 
 ##### Build N-Gram Library
-![N-Gram Library](N-Gram%20Library.png)
+![N-Gram Library](src/auto_completion/N-Gram%20Library.png)
 
 * Build N-Gram Library by MapReduce
     ```
@@ -80,10 +80,10 @@
 ##### Build Language Model
 ![Language Model](https://latex.codecogs.com/png.latex?p%28word%20%7C%20phrase%29%20%3D%20%5Cfrac%7BCount%28phrase%20&plus;%20word%29%7D%7BCount%28phrase%29%7D)
     
-![Build Language Model By MapReduce](Build%20Language%20Model.png)
+![Build Language Model By MapReduce](src/auto_completion/Build%20Language%20Model.png)
     The goal is to apply N-to-N model which is predict next n words based on all grams the user has input
     However the output of MapReduce Job2 is N to 1 (predict only one following word based on the n-gram from MapReduce Job1)
     The N-to-N model will be implemented by query from MySQL (query all records starting by xxx) 
     
-![](table%20look%20up.png)
-![](MySQL%20Query%20Trick.png)
+![](src/auto_completion/table look up.png)
+![](src/auto_completion/MySQL%20Query%20Trick.png)
