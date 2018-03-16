@@ -85,5 +85,5 @@
     However the output of MapReduce Job2 is N to 1 (predict only one following word based on the n-gram from MapReduce Job1)
     The N-to-N model will be implemented by query from MySQL (query all records starting by xxx) 
     
-![](src/auto_completion/table look up.png)
+![](src/auto_completion/table%20look%20up.png)
 ![](src/auto_completion/MySQL%20Query%20Trick.png)
