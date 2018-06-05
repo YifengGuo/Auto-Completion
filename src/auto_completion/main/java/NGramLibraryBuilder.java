@@ -41,9 +41,11 @@ public class NGramLibraryBuilder {
          */
         @Override
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            // MapReduce will have many interactions with disk or HDFS. Mapper will get input from HDFS and
-            // its result will be written to disk. And to simplify these processes, we can make a intermediate thing
-            // which is context
+            // Hadoop uses Context object with Mapper to interact with rest of the system.
+            // Context object gets the configuration of the system and job in its constructor.
+            // We use Context object to pass the information in setup(), cleanup() and map() methods.
+            // This is an important object that makes the important information available during the map operations.
+
             // context allows the Mapper/Reducer to interact with the rest of the Hadoop system
             // so n of N-Gram should be set in main() and sent by context between MR and External World
 //            Configuration conf = context.getConfiguration();  // initialized in setup()
